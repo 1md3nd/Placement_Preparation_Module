@@ -1,27 +1,41 @@
+import heapq
 class Solution:
+    
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        size_1 = len(nums1)
-        size_2 = len(nums2)
-        res = []
-        i, j = 0, 0
-        while i < size_1 and j < size_2:
-            if nums1[i] < nums2[j]:
-                res.append(nums1[i])
-                i += 1 
+        min_heap = []
+        max_heap = []
+        temp_heap = []
+        def Fix_Heap(x):
+            if len(max_heap) == 0 and len(min_heap) == 0:
+                heapq.heappush(min_heap, -x)
             else:
-                res.append(nums2[j])
-                j += 1
-        res = res + nums1[i:] + nums2[j:]
-        #print(res)
-        length = len(res)
-        if length%2 !=0:
-            mid = length//2
-            print(mid)
-            return float(res[mid])
-        else:
-            mid = length//2
-            mid -=1
-            #print(res[mid],res[mid+1])
-            sum1 = res[mid] + res[mid+1]
-            sum1 /=2
-            return float(sum1)
+                if x <= -min_heap[0]:
+                    heapq.heappush(min_heap, -x)
+                else:
+                    heapq.heappush(max_heap, x)
+            if len(min_heap) > len(max_heap) + 1:
+                heapq.heappush(max_heap,-(heapq.heappop(min_heap)))
+            elif len(min_heap) < len(max_heap):
+                heapq.heappush(min_heap,-(heapq.heappop(max_heap)))
+        
+        def Find_Median():
+            if len(max_heap) == len(min_heap):
+                return -min_heap[0]/2 + max_heap[0]/2
+            elif len(max_heap) > len(min_heap):
+                return max_heap[-1]
+            else:
+                return -min_heap[0]
+        for i in nums1:
+            heapq.heappush(temp_heap,i)
+        for i in nums2:
+            heapq.heappush(temp_heap,i)
+        print(temp_heap)
+        while temp_heap:
+            Fix_Heap(heapq.heappop(temp_heap))
+            # print(max_heap,min_heap)
+        
+        return Find_Median()
+    
+        
+                    
+                
