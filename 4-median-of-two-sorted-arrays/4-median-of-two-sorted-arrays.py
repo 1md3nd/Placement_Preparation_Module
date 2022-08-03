@@ -18,9 +18,9 @@ class Solution:
         
         def Find_Median():
             if len(max_heap) == len(min_heap):
-                return -(heapq.heappop(max_heap))/2 + heapq.heappop(min_heap)/2
+                return -max_heap[0]/2 + min_heap[0]/2
             else:
-                return -heapq.heappop(max_heap)
+                return -max_heap[0]
         for i in nums1:
             heapq.heappush(temp_heap,i)
         for i in nums2:
