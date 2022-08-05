@@ -1,14 +1,18 @@
 class Solution:
-    def combine(self, n: int, k: int) -> List[List[int]]:
-        ans = []
-        
-        def dfs(index,cur):
-            if len(cur) == k:
-                ans.append(cur.copy())
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        anss = []
+        N = len(candidates)
+        def dfs(index, curr, total_):
+            if total_ == target:
+                anss.append(curr.copy())
                 return
-            for i in range(index, n+1):
-                cur.append(i)
-                dfs(i+1,cur)
-                cur.pop()
-        dfs(1,[])
-        return ans
+            if total_ > target or index >= N:
+                return
+            temp = candidates[index]
+            curr.append(temp)
+            dfs(index, curr, total_ + temp)
+            curr.pop()
+            dfs(index + 1, curr, total_)
+        dfs(0,[],0)
+        return anss
+        
