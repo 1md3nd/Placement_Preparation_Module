@@ -17,7 +17,7 @@ class Solution:
                 curr.append(temp)
                 dfs(i + 1, curr, rem_ - temp)
                 curr.pop()
-                pre = candidates[i]
+                pre = temp
 
         dfs(0,[],target)
                 
