@@ -4,6 +4,10 @@ class Solution:
         MOD = 10 ** 9 + 7
         N = len(arr)
         hash_ = collections.Counter(arr)
+     """
+        Space-> O(N)
+        Time-> O(N^2)
+     """
         for i in range(N):
             # print(hash_)
             count = 0
