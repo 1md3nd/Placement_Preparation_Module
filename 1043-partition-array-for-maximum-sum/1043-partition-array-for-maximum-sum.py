@@ -1,5 +1,7 @@
 class Solution:
     def maxSumAfterPartitioning(self, arr: List[int], k: int) -> int:
+        # TIme -> O(N) * O(K)
+        # Space -> O(N+1)
         n = len(arr)
         dp = [0] * (n+1)
         for index in range(n-1,-1,-1):
