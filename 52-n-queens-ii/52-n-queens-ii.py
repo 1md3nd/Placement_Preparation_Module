@@ -1,5 +1,5 @@
 class Solution:
-    def totalNQueens(self, n: int) -> int:
+    def solveNQueens(self, n: int) -> List[List[str]]:
         chess = []
         for _ in range(n):
             chess.append([0] * n)
@@ -38,10 +38,21 @@ class Solution:
                 i +=1
                 j -=1
             return True
-        count = []
+        ans = []
+        def printF(chess):
+            res = []
+            for i in range(n):
+                temp = ""
+                for j in range(n):
+                    if chess[i][j] == 1:
+                        temp += "Q"
+                    else:
+                        temp += "."
+                res.append(temp)
+            ans.append(res)
         def queen(row):
             if row == n:
-                count.append(1)
+                printF(chess)
                 return
             for col in range(n):
                 if chess[row][col] == 0 and safe(chess,row,col):
@@ -49,4 +60,4 @@ class Solution:
                     queen(row+1)
                     chess[row][col] = 0
         queen(0)
-        return len(count)
+        return ans
