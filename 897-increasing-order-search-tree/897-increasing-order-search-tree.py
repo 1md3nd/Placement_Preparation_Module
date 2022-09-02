@@ -7,18 +7,22 @@
 class Solution:
     def increasingBST(self, root: TreeNode) -> TreeNode:
         q = []
+        new = TreeNode()
+        head = new
         def dfs(node):
+            nonlocal new
             if node is None:
                 return
             dfs(node.left)
-            q.append(node.val)
+            new.right = TreeNode(node.val)
+            new = new.right
             dfs(node.right)
         dfs(root)
-        new = TreeNode(q.pop(0))
-        head = new
-        while q:
-            new.right = TreeNode(q.pop(0))
-            # new.left = TreeNode(null)
-            new = new.right
-        return head
+        # new = TreeNode(q.pop(0))
+        # head = new
+        # while q:
+        #     new.right = TreeNode(q.pop(0))
+        #     new = new.right
+        # return head
+        return head.right
     
