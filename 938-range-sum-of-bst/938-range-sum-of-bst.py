@@ -17,8 +17,8 @@ class Solution:
                 if head.val >= low and head.val <= high:
                     # print(head.val)
                     res+=head.val
-                if head.left:
+                if head.left and head.val > low: 
                     q.append(head.left)
-                if head.right:
+                if head.right and head.val < high:
                     q.append(head.right)
         return res            
