@@ -24,7 +24,7 @@ class Solution:
                     return
             if r1.val != r2.val:
                 self.flag = False
-                return
+                
             dfs(r1.left,r2.left)
             dfs(r1.right,r2.right)
             return self.flag
