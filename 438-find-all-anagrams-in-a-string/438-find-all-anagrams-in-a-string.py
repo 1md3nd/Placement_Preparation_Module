@@ -17,7 +17,7 @@ class Solution:
                     j +=1
             else:
                 h2[s[i]] = 1
-            print(h2)
+            # print(h2)
 
             if h2 == hash_:
                 res.append(j)
