@@ -4,7 +4,7 @@ class Solution:
         N = len(pro)
         ans = 0 
         maX = 0
-        print(pro)
+        # print(pro)
         for x,y in pro:
             if maX > y:
                 ans +=1
