@@ -21,9 +21,7 @@ class Solution:
                 curr = stack2.pop() + temp
                 temp = ""
                 num = 0
-
             else:
-                print(stack1,stack2)
                 if char.isdigit():
                     num = num*10 + int(char)
                 else:
